@@ -1,6 +1,8 @@
 import React from 'react';
 import Flex from "../../ui/flex";
 import {Container} from "./styles";
+import Codensa from "./../../../img/codensa.jpg";
+import Daviplata from "./../../../img/daviplata.jpg";
 
 const Banner: React.FC = (props) => {
     return (
@@ -11,8 +13,8 @@ const Banner: React.FC = (props) => {
                         <div className="medios wc p-3 text-center mb-4">
                             <p>Nuevos medios de pago disponibles para ti</p>
                             <Flex>
-                                <img src="" alt=""/>
-                                <img src="" alt=""/>
+                                <img src={Codensa} alt="" height={"35px"} className={"mx-2"}/>
+                                <img src={Daviplata} alt="" height={"35px"} className={"mx-2"}/>
                             </Flex>
                         </div>
                         <div className={"mb-3"}>
@@ -20,10 +22,10 @@ const Banner: React.FC = (props) => {
                             <p className={"cw"}>Programa tus pagos y hazlo todo más fácil</p>
                         </div>
                         <div className={"cw"}>
-                            <div className={"mb-2"}>Paga en línea todo tus productos</div>
-                            <div className={"mb-2"}>Paga con tarjeta de crédito o debito</div>
-                            <div className={"mb-2"}>Pagos automáticos con un clic</div>
-                            <div>Olvídate de hacer filas en el banco</div>
+                            <div className={"mb-2"}> <i className={"icon-tarjeta"}></i> Paga en línea todo tus productos</div>
+                            <div className={"mb-2"}> <i className={"icon-equipo"}></i> Paga con tarjeta de crédito o debito</div>
+                            <div className={"mb-2"}> <i className={"icon-dinero"}></i> Pagos automáticos con un clic</div>
+                            <div> <i className={"icon-reloj"}></i> Olvídate de hacer filas en el banco</div>
                         </div>
                     </Flex>
                     <div className={"alertWhite p-2 wc"}>
