@@ -1,5 +1,5 @@
 import React,{lazy,Suspense} from 'react';
-import { BrowserRouter as Router,Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router,Switch, Route } from "react-router-dom";
 import Header from "./components/header/header";
 import Loading from "./components/ui/loading/loading";
 import {colors} from "./components/ui";

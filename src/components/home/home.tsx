@@ -3,7 +3,6 @@ import Flex from "../ui/flex";
 import Btntab from "../ui/BtnTab/Btntab";
 import Title from "./title";
 import Campo from "../ui/field/field";
-import logo_ePayco from "./../../img/logo_ePayco.svg";
 import Banner from "./banner/banner";
 import TypeLineBtns from "./typeLineBtns/typeLinesBtns";
 import ConvidInfo from "./covitInfo/covidInfo";
@@ -21,9 +20,9 @@ const Home: React.FC = (props) => {
         processing: ''
     })
 
-    let submit = (type: string) => {
-        set({...state, processing: type});
-    }
+    // let submit = (type: string) => {
+    //     set({...state, processing: type});
+    // }
 
     useEffect(() => {
         if (state.active !== 1) {
@@ -85,7 +84,12 @@ const Home: React.FC = (props) => {
                         />
 
                         <div className={"wc pt-3 text-center"}>
-                            <a href="" className={"ct"}>¿Cómo hacer mi pago?</a>
+                            <a
+                                target={"_blank"}
+                                rel="noreferrer"
+                                href="https://www.youtube.com/watch?v=YYbtiK7iwVk&ab_channel=MovistarColombia"
+                               className={"ct"}>¿Cómo hacer mi pago?
+                            </a>
                         </div>
 
                         <EpaycoFooter className={"pt-4"}/>

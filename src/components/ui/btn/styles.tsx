@@ -2,12 +2,12 @@ import styled from "@emotion/styled";
 import {colors, sombra, transiton} from "../index";
 
 type ButtonProps = {
-    type  : boolean;
+    type  : string | undefined ;
     height: number;
     color : string;
     flex  : string;
     disabled?:boolean;
-    loading?:boolean;
+    loading?:string | undefined ;
 }
 
 export const Container = styled.div<ButtonProps>`

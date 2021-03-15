@@ -3,7 +3,6 @@ import Flex from "../ui/flex";
 import EpaycoFooter from "../epaycofooter/epaycoFooter";
 import Btn from "../ui/btn";
 import {colors} from "../ui";
-import Field from "../ui/field/field";
 import DataItem from "./DataItem/DataItem";
 import {withRouter} from "react-router-dom";
 import SendEmail from "./sendEmail/sendEmail";

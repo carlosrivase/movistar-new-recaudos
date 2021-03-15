@@ -4,7 +4,7 @@ import Factura from "../factura/factura";
 import {Collapse} from "react-collapse";
 import Flex from "../../ui/flex";
 
-type Factura = {
+type FacturaObj = {
     legend: string;
     active: boolean;
     amount: number | string;
@@ -17,7 +17,7 @@ interface Props {
 
 interface State {
     showDetail?: boolean;
-    facturas: Array<Factura>;
+    facturas: Array<FacturaObj>;
     total: number | string;
 }
 
@@ -59,7 +59,7 @@ const FacturaAndDetail: React.FC<Props> = (props) => {
                     {state.facturas.length &&
                     state.facturas.map((factura:any, key) =>
                         <Factura
-                            active={factura.amount != 0}
+                            active={factura.amount !== 0}
                             key={key}
                             disabled={false}
                             monto={factura.monto}

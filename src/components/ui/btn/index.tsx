@@ -29,18 +29,16 @@ const Btn:React.FC<Props> = ({
  }) => {
 
     let height = big ? 46 : 36;
-    let borde  = disabled ? colors.disabled : color
-
 
     return (
         <Container
-            type={type === "line"}
+            type={type === "line" ? '1' : undefined }
             height={height}
             flex={flex}
             color={disabled ? type === "line" ? "white" : colors.disabled : color}
             disabled={disabled}
             className={className}
-            loading={loading}
+            loading={loading ? '1': undefined }
         >
             <button disabled={disabled} onClick={onClick}>{children}</button>
             {loading &&
