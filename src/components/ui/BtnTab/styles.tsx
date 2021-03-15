@@ -22,9 +22,10 @@ export const Container = styled.div<Props>`
         color:${props => props.active ? "white" :(!!props.color ? props.color : colors.blue) };
         min-height:${props => props.size}px;
         cursor:${props => props.disabled ? "not-allowed" : 'pointer'};
-        border-radius:${props => props.size === "36" ? "16px" : "23px"};
+        border-radius:${props => props.size === "36" ? "20px" : "23px"};
         width:100%;
         transition: ${transiton};
+        padding-bottom:5px;
         border: 1px solid ${props => props.borde ? props.color : "transparent"};
         
         &:disabled{ 
@@ -39,11 +40,11 @@ export const Container = styled.div<Props>`
         height:12px;
         border-radius:2px;
         position:absolute;
-        top:${props => props.active ? "100%" : "50%" };
+        top:100%;
         opacity: ${props => props.active ? 1 : 0};
         left:50%;
         transform:translate(-50%,-60%) rotate(-45deg) ;
-        background-color:${colors.blue};
+        background-color:${props => props.color ? 'transparent' : colors.blue};
         transition: ${transiton};
     }
 `

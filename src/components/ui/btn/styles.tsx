@@ -22,6 +22,7 @@ export const Container = styled.div<ButtonProps>`
         background-color:${props=> props.type ? "white" :  props.color};
         color:${props=> props.loading ? props.color : (props.type ? props.color : "white")};
         box-shadow:${sombra};
+        padding-bottom:5px;
         
         &:hover{}
         

@@ -34,7 +34,7 @@ const Btntab:React.FC<Props> = ({
             <button onClick={onClick} className={"px-2"}>
                 {children}
             </button>
-            { (active && !noArrow ) && <div className="arrow"> </div> }
+            <div className="arrow"> </div>
         </Container>
     )
 }

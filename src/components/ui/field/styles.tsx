@@ -19,11 +19,13 @@ export const Container = styled.div<Props>`
     .icon{
         position:absolute;
         left:0;
-        bottom:0;
+        top:0;
         width:auto;
         height:100%;
         font-size:22px;
         color:${props=> props.colorIcon};
+        z-index:10;
+        height:56px;
     }
     
     input{
@@ -36,7 +38,7 @@ export const Container = styled.div<Props>`
         cursor:pointer;
         
         &:disabled{
-            border-color:${colors.blue};
+            border-color:${colors.disabled};
             cursor:not-allowed;
         }
         

@@ -1,31 +1,42 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Flex from "../ui/flex";
 import Btntab from "../ui/BtnTab/Btntab";
 import Title from "./title";
-import {colors} from "../ui";
 import Campo from "../ui/field/field";
-import Btn from "../ui/btn";
 import logo_ePayco from "./../../img/logo_ePayco.svg";
 import Banner from "./banner/banner";
 import TypeLineBtns from "./typeLineBtns/typeLinesBtns";
 import ConvidInfo from "./covitInfo/covidInfo";
+import GroupBtns from "./GroupBtns/GroupBtns";
+import {Collapse} from "react-collapse";
+import EpaycoFooter from "../epaycofooter/epaycoFooter";
 
 const Home: React.FC = (props) => {
 
 
     const [state, set] = useState({
         active: 1,
-        tipoLinea: 'fija',
+        tipoLinea: 'movil',
         number: '',
-        processing:false
+        processing: ''
     })
+
+    let submit = (type: string) => {
+        set({...state, processing: type});
+    }
+
+    useEffect(() => {
+        if (state.active !== 1) {
+            set({...state, tipoLinea: 'movil'})
+        }
+    }, [state.active])
 
     return (
         <Flex className={"wc"} flex={"1 0 70%"} alg={"stretch"}>
             <Flex
-                  className={"col-12 p-3 p-lg-0 col-md-6 col-lg-7 col-xl-8"}
-                  direction={"column"}
-                  jc={"flex-start"}
+                className={"col-12 p-3 p-lg-0 col-md-6 col-lg-7 col-xl-8"}
+                direction={"column"}
+                jc={"flex-start"}
 
             >
                 <Flex className={"wc"} flex={"1 0 auto"} direction={"column"}>
@@ -43,65 +54,45 @@ const Home: React.FC = (props) => {
                         <TypeLineBtns
                             open={state.active === 1}
                             active={state.tipoLinea}
-                            Set={(e)=> set({...state,tipoLinea:e})}
+                            Set={(e) => set({...state, tipoLinea: e})}
                         />
 
-                        <div className={"py-3 wc"}>
+                        <Collapse isOpened={state.tipoLinea === "fija" && state.active === 1}>
+                            <div className={"pb-3"}>
+                                <Campo
+                                    value={"8"}
+                                    onChange={(e: any) => set({...state, number: e.target.value})}
+                                    disabled={false}
+                                    type={"select"}
+                                    icon={"ubicacion"}
+                                />
+                            </div>
+                        </Collapse>
+
+                        <div className={"pb-3 wc"}>
                             <Campo
                                 value={"8"}
-                                onChange={(e: any) => set({...state,number:e.target.value})}
+                                onChange={(e: any) => set({...state, number: e.target.value})}
                                 disabled={false}
-                                type={"number"}
-                                icon={"movil"}
+                                icon={state.tipoLinea === 'fija' ? 'fijo' : "movil"}
                             />
                         </div>
 
-                        <Flex className={"wc py-3"}>
-                            <Btn
-                                className={"mb-4           col-12"}
-                                onClick={() => console.log("puto")}
-                                color={colors.blue}
-                                big
-                                disabled={!state.number}
-                            >
-                                <i className={'icon-icon-tiempo'}> </i> Programar mis pagos
-                            </Btn>
-                            <Btn
-                                className={"col-6 pe-2"}
-                                onClick={() => console.log("puto")}
-                                type={"line"}
-                                big
-                                disabled={!state.number}
-                                color={colors.blueDark}
-                            >
-                                Consultar
-                            </Btn>
-                            <Btn
-                                className={"col-6 ps-2"}
-                                onClick={() => console.log("puto")}
-                                color={colors.blueDark}
-                                big
-                                disabled={!state.number}
-                            >
-                                Ir a pagar
-                            </Btn>
-                        </Flex>
+                        <GroupBtns
+                            loading={state.processing}
+                            action={() => console.log("hola")}
+                            number={state.number.length > 7}
+                        />
+
                         <div className={"wc pt-3 text-center"}>
                             <a href="" className={"ct"}>¿Cómo hacer mi pago?</a>
                         </div>
 
-                        <div className={"text-center pb-3 pt-4"}>
-                            <p>
-                                <i></i>
-                                Pagos procesados por
-                                <img src={logo_ePayco} alt="" height={"28px"} width={'auto'} className={"ps-2"}/>
-                            </p>
-                        </div>
+                        <EpaycoFooter className={"pt-4"}/>
                     </div>
                 </Flex>
                 <ConvidInfo className={"d-none d-md-block"}/>
             </Flex>
-
 
             <Banner/>
             <ConvidInfo className={"d-md-none"}/>

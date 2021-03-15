@@ -8,7 +8,7 @@ interface PROPS {
 const ShowError : React.FC<PROPS> = ({error}) => {
     return (
         <Collapse isOpened={!!error}>
-            <small className={"error"}>{error}</small>
+            <small className={"errortext"}>{error}</small>
         </Collapse>
     )
 }

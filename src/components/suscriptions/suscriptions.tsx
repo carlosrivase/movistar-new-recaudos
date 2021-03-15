@@ -1,12 +1,13 @@
 import React from 'react';
+import Flex from "../ui/flex";
 
 
 
 const Suscription:React.FC = (props) => {
     return (
-        <div>
-            <h1>Sucription</h1>
-        </div>
+        <Flex className={"wc ro"} flex={"1 0 80%"}>
+
+        </Flex>
     )
 }
 

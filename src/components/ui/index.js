@@ -4,7 +4,8 @@ export  const colors = {
     green: "#5CB615",
     black:"#50535A",
     text:"#0A2738",
-    disabled:"#D3D4D3"
+    disabled:"#D3D4D3",
+    borde:"#BCBCBC"
 }
 
 export const sombra = '0 4px 7px rgba(0,0,0,0.11)';
