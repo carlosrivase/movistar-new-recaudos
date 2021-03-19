@@ -9,8 +9,6 @@ Q
 ,src/components/suscriptions/suscriptions.tsx,8/c/8cd510a118093d5cd5e96be7e5b256cc2f2a1a92
 O
 src/components/ui/flex/index.js,c/5/c50917d0604bb0f4f7415482be47e3c8fdce988f
-P
- src/components/detail/detail.tsx,d/d/dd7c8d8c0bccf477fc5e136665f9dedfb763860d
 Q
 !src/components/detail/details.tsx,6/2/629d4d0b2040a2b25e6f2300f7e7c14e02c03bd6
 P
@@ -72,3 +70,27 @@ U
 %src/components/ui/field/getCities.tsx,5/c/5c9032f729280b2b2a306f865e97c737eb0bb2a4
 X
 (src/components/ui/field/selectCities.tsx,4/8/485707d26634aa360cd299203db4ff84e6352b73
+S
+#src/components/detail/info/info.tsx,a/3/a34f6e2a8cfb10e9445c137bc51aa10744825220
+]
+-src/components/ui/checkCircle/checkCircle.tsx,b/3/b313b31727148813268b49b07d0fd2ebf22a8ee2
+Z
+*src/components/detail/facturasQuemadas.tsx,e/4/e44871afc03c62a260adc0be57d15edab894aca7
+\
+,src/components/epaycofooter/epaycoFooter.tsx,2/e/2e201e09e26b6530be8667cf0d6694b0e08c8659
+Y
+)src/components/detail/factura/factura.tsx,7/f/7fb13e126ef142e147e7b09875ea57131dfd5747
+X
+(src/components/detail/factura/styles.tsx,b/6/b68a04a517f048f8b0de91f6b0af3e14b944678e
+a
+1src/components/detail/FacturaAndDetail/styles.tsx,d/0/d0e63e0462f313613fd2e89a859ad0c61e9becf5
+f
+6src/components/detail/FacturaAndDetail/FacturaMain.tsx,e/6/e69b749d45e18b22dd2bf6ed0b3f08ec68d1a0d4
+\
+,src/components/resumen/DataItem/DataItem.tsx,8/9/893a0a9a117c84071b5db86307936a689b854c7c
+^
+.src/components/resumen/sendEmail/sendEmail.tsx,2/1/217c27658c96be2a0f25478484a7cd92174bc8eb
+k
+;src/components/detail/FacturaAndDetail/FacturaAndDetail.tsx,2/5/255aaaa8256c94ef5bec36c6148df68675c9e776
+X
+(src/components/ui/checkCircle/styles.tsx,c/9/c9dc7ea4253303c8da7ae68212d63ba8e95b8f79

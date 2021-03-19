@@ -4,6 +4,7 @@ import ShowError from "./showError";
 import Flex from "../flex";
 import {colors} from "../index";
 import SelectCities from "./selectCities";
+import Cleave from "cleave.js/react";
 
 
 interface Props {
@@ -35,6 +36,22 @@ const Field: React.FC<Props> = (props) => {
                 <i className={"icon-icon-" + props.icon}> </i>
             </Flex>}
 
+
+            {props.type === "mask" &&
+            <Cleave
+                disabled={props.disabled}
+                className={"to-right wc"}
+                value={props.value}
+                options={{
+                    blocks:[3,3,4,4]
+                }}
+                onChange={(e:any)=> {
+                    let obj = {target:{value:e.target.rawValue}}
+                    props.onChange(e)
+                }}
+            />
+
+            }
 
             {props.type === "select" &&
              <SelectCities

@@ -8,7 +8,8 @@ import {Collapse} from "react-collapse";
 interface Props {
     Set:(e:string)=> void,
     active:string,
-    open:boolean
+    open:boolean,
+    disabled:boolean
 }
 
 const TypeLineBtns:React.FC<Props> = (props) => {
@@ -24,6 +25,7 @@ const TypeLineBtns:React.FC<Props> = (props) => {
                    children={"Móvil"}
                    active={props.active === "movil"}
                    onClick={() => props.Set('movil')}
+                   disabled={props.disabled}
                />
                <Btntab
                    color={colors.blueDark}
@@ -34,6 +36,7 @@ const TypeLineBtns:React.FC<Props> = (props) => {
                    children={"Fija"}
                    active={props.active === "fija"}
                    onClick={() => props.Set('fija')}
+                   disabled={props.disabled}
                />
            </Flex>
        </Collapse>

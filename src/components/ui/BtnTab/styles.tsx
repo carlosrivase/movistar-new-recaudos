@@ -31,7 +31,8 @@ export const Container = styled.div<Props>`
         &:disabled{ 
             cursor:pointer;
             color:white;
-            background-color:${colors.disabled}
+            background-color:${colors.disabled};
+            border-color:${colors.disabled};
         }
     }
     
@@ -44,7 +45,7 @@ export const Container = styled.div<Props>`
         opacity: ${props => props.active ? 1 : 0};
         left:50%;
         transform:translate(-50%,-60%) rotate(-45deg) ;
-        background-color:${props => props.color ? 'transparent' : colors.blue};
+        background-color:${props => props.disabled ? colors.disabled : (props.color ? 'transparent' : colors.blue)};
         transition: ${transiton};
     }
 `

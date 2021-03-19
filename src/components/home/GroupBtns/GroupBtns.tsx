@@ -7,7 +7,7 @@ import {colors} from "../../ui";
 interface Props {
     action:(t:string)=> void;
     loading?:string;
-    number?:boolean
+    number?:boolean,
 }
 
 const GroupBtns:React.FC<Props> = (props) => {

@@ -98,12 +98,16 @@ const SelectCities:React.FC<Props> = (props) => {
             ...provided,
             // none of react-select's styles are passed to <Control />
             border:"none",
-            borderBottom:`2px solid ${ state.isFocused ? colors.blue : colors.blueDark}`,
+            borderBottom:`2px solid ${ state.isFocused ? colors.blue : (state.isDisabled ? colors.disabled : colors.blueDark)}`,
             borderRadius:0,
+            background:"transparent",
             height:"56px",
             boxShadow:"none",
             '&:hover': {
                 borderColor: props.error ? "red" : (state.isFocused ? colors.blue : colors.blueDark),
+            },
+            '&:disabled': {
+                borderColor: colors.disabled,
             },
         }),
 
@@ -147,6 +151,7 @@ const SelectCities:React.FC<Props> = (props) => {
                 // isRtl={isRtl}
                 isSearchable={true}
                 name="label"
+                disabled={props.disabled}
                 options={MyState.options}
                 styles={customStyles}
                 components={{

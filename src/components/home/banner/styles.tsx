@@ -41,7 +41,7 @@ export const Container = styled.div`
     
   @media all and (min-width: 768px) and (min-height:600px){
      min-height:calc(100vh - 150px);
-     height:auto;
+     height:100%;
      
      .content{
         min-height:calc(100vh - 168px);

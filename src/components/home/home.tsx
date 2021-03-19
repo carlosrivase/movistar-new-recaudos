@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import Flex from "../ui/flex";
-import Btntab from "../ui/BtnTab/Btntab";
 import Title from "./title";
 import Campo from "../ui/field/field";
 import Banner from "./banner/banner";
@@ -9,6 +8,7 @@ import ConvidInfo from "./covitInfo/covidInfo";
 import GroupBtns from "./GroupBtns/GroupBtns";
 import {Collapse} from "react-collapse";
 import EpaycoFooter from "../epaycofooter/epaycoFooter";
+import TabsGroup from "./TabsGroup/TabsGroup";
 
 const Home: React.FC = (props) => {
 
@@ -17,12 +17,14 @@ const Home: React.FC = (props) => {
         active: 1,
         tipoLinea: 'movil',
         number: '',
-        processing: ''
+        processing: '',
+        indicativo:''
     })
 
-    // let submit = (type: string) => {
-    //     set({...state, processing: type});
-    // }
+    let submit = (type: string) => {
+        set({...state, processing: type});
+    }
+
 
     useEffect(() => {
         if (state.active !== 1) {
@@ -39,29 +41,29 @@ const Home: React.FC = (props) => {
 
             >
                 <Flex className={"wc"} flex={"1 0 auto"} direction={"column"}>
-                    <div className={"col-12 col-md-8 col-lg-7 col-xl-6 col-xxl-4 mx-auto"}>
-                        <Flex className={"wc py-3"}>
-                            <Btntab flex={"1 0 auto"} active={state.active === 1} children={"Movistar"}
-                                    onClick={() => set({...state, active: 1})}/>
-                            <Btntab flex={"1 0 auto"} active={state.active === 2} children={"Telebucaramanga"}
-                                    onClick={() => set({...state, active: 2})}/>
-                            <Btntab flex={"1 0 auto"} active={state.active === 3} children={"Metrotel"}
-                                    onClick={() => set({...state, active: 3})}/>
-                        </Flex>
+                    <div className={"col-12 col-sm-10 col-md-11 col-lg-7 col-xl-6 col-xxl-4 mx-auto"}>
+
+                        <TabsGroup
+                            active={state.active}
+                            set={(e:number)=> set({...state,active:e})}
+                            disabled={!!state.processing}
+                        />
+
                         <Title active={state.active}/>
 
                         <TypeLineBtns
                             open={state.active === 1}
                             active={state.tipoLinea}
                             Set={(e) => set({...state, tipoLinea: e})}
+                            disabled={!!state.processing}
                         />
 
-                        <Collapse isOpened={state.tipoLinea === "fija" && state.active === 1}>
-                            <div className={"pb-3"}>
+                        <Collapse className={"up-index"} isOpened={state.tipoLinea === "fija" && state.active === 1}>
+                            <div className={"pb-3 up-index"}>
                                 <Campo
-                                    value={"8"}
-                                    onChange={(e: any) => set({...state, number: e.target.value})}
-                                    disabled={false}
+                                    value={state.indicativo}
+                                    onChange={(e: any) => set({...state, indicativo: e.target.value})}
+                                    disabled={!!state.processing}
                                     type={"select"}
                                     icon={"ubicacion"}
                                 />
@@ -70,17 +72,18 @@ const Home: React.FC = (props) => {
 
                         <div className={"pb-3 wc"}>
                             <Campo
-                                value={"8"}
+                                value={state.number}
                                 onChange={(e: any) => set({...state, number: e.target.value})}
-                                disabled={false}
+                                disabled={!!state.processing}
+                                type={"mask"}
                                 icon={state.tipoLinea === 'fija' ? 'fijo' : "movil"}
                             />
                         </div>
 
                         <GroupBtns
                             loading={state.processing}
-                            action={() => console.log("hola")}
-                            number={state.number.length > 7}
+                            action={(ty:string)=> submit(ty)}
+                            number={state.number.length > 6}
                         />
 
                         <div className={"wc pt-3 text-center"}>

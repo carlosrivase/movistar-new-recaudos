@@ -31,10 +31,10 @@ const Btntab:React.FC<Props> = ({
 
     return (
         <Container className={className} borde={borde} flex={flex} active={active} size={size} disabled={disabled} color={color}>
-            <button onClick={onClick} className={"px-2"}>
+            <button onClick={onClick} className={"px-2"} disabled={disabled}>
                 {children}
             </button>
-            <div className="arrow"> </div>
+            {!noArrow && <div className="arrow"> </div>}
         </Container>
     )
 }

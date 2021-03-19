@@ -40,6 +40,7 @@ export const Container = styled.div<Props>`
         &:disabled{
             border-color:${colors.disabled};
             cursor:not-allowed;
+            color:#999999;
         }
         
         &:focus{

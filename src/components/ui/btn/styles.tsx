@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import {colors, sombra, transiton} from "../index";
+import {type} from "os";
 
 type ButtonProps = {
     type  : string | undefined ;
@@ -20,7 +21,7 @@ export const Container = styled.div<ButtonProps>`
         min-height:${props=> props.height}px;
         border-radius:${props=> props.height/2}px;
         background-color:${props=> props.type ? "white" :  props.color};
-        color:${props=> props.loading ? props.color : (props.type ? props.color : "white")};
+        color:${props=> props.loading ? (props.type ? "white" : props.color ) : (props.type ? props.color : "white")};
         box-shadow:${sombra};
         padding-bottom:5px;
         

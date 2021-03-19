@@ -43,7 +43,11 @@ const Btn:React.FC<Props> = ({
             <button disabled={disabled} onClick={onClick}>{children}</button>
             {loading &&
             <Flex className="loading" direction={"column"}>
-                <Loading size={big?  40 : 30 } sizeBr={big ? 5 : 3 }/>
+                <Loading
+                    size={big?  40 : 30 }
+                    sizeBr={big ? 5 : 3 }
+                    colorLine={type === "line" ? color : "white" }
+                />
             </Flex>
             }
         </Container>
