@@ -17,7 +17,9 @@ interface Props {
     icon?:string;
     error?:string
     options?:string,
-    type?:string
+    type?:string;
+    theRef?:any;
+    placeholder?:string
 }
 
 const Field: React.FC<Props> = (props) => {
@@ -39,6 +41,7 @@ const Field: React.FC<Props> = (props) => {
 
             {props.type === "mask" &&
             <Cleave
+                ref={props.theRef}
                 disabled={props.disabled}
                 className={"to-right wc"}
                 value={props.value}
@@ -49,12 +52,14 @@ const Field: React.FC<Props> = (props) => {
                     let obj = {target:{value:e.target.rawValue}}
                     props.onChange(e)
                 }}
+                placeholder={props.placeholder }
             />
 
             }
 
             {props.type === "select" &&
              <SelectCities
+                 Ref={props.theRef}
                  icon={!!props.icon}
                  setValue={ (e:any)=>{
                      let obj:{} = {
@@ -73,11 +78,13 @@ const Field: React.FC<Props> = (props) => {
 
             {!props.type &&
             <input
+                ref={props.theRef}
                 type={props.type}
                 onChange={props.onChange}
                 onFocus={()=> set(true)}
                 onBlur={()=> set(false)}
                 disabled={props.disabled}
+                placeholder={props.placeholder }
             />
             }
 

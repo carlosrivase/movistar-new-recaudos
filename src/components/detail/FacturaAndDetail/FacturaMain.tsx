@@ -11,6 +11,7 @@ interface Props {
     active:boolean;
     disabled:boolean;
     detailActive:boolean;
+    hideChevron:boolean
 }
 
 const FacturaMain:React.FC<Props> = (props) => {
@@ -38,9 +39,10 @@ const FacturaMain:React.FC<Props> = (props) => {
                     />
                 </Flex>
                 <Flex flex={"0 0 30px"}>
+                    {!props.hideChevron &&
                     <button className={"showDetail"} onClick={()=> props.showDetail()}>
                         <i className={"icon-icon-chevron"}> </i>
-                    </button>
+                    </button>}
                 </Flex>
             </Flex>
         </ContainerFacturaMain>

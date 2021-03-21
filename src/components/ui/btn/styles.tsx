@@ -31,6 +31,7 @@ export const Container = styled.div<ButtonProps>`
             background:${props => props.type ? 'white': colors.disabled};
             color:${props => props.type ? colors.disabled : 'white'};
             border-color: ${props => props.loading ? props.color : colors.disabled };
+            cursor:${ props=> props.loading ? 'waiting' :"not-allowed"};
         }
         
         transition:${transiton};
@@ -43,6 +44,7 @@ export const Container = styled.div<ButtonProps>`
         height:100%;
         width:100%;
         z-index:10;
+        cursor:wait;
     }
 `;
 

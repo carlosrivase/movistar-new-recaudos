@@ -15,7 +15,7 @@ const CheckCircle:React.FC<Props> = (props) => {
             active={props.active}
             disabled={props.disabled}
         >
-            <input type="checkbox"/>
+            <input type="checkbox" onChange={()=> props.set()} className={"ro"}/>
             <Flex className={`chulo ${props.active && 'active'}`}>
                 <i className={"icon-icon-check"}> </i>
             </Flex>

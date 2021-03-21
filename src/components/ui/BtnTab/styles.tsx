@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {colors, transiton} from "../index";
+import {colors, sombra, transiton} from "../index";
 
 
 type Props ={
@@ -19,20 +19,22 @@ export const Container = styled.div<Props>`
         
     button{
         background-color:${props => props.active ? (!!props.color ? props.color : colors.blue) : "transparent"};
-        color:${props => props.active ? "white" :(!!props.color ? props.color : colors.blue) };
+        color:${props => props.active ? "white" : ( props.disabled ? colors.disabled : (!!props.color ? props.color : colors.blue) ) };
         min-height:${props => props.size}px;
         cursor:${props => props.disabled ? "not-allowed" : 'pointer'};
         border-radius:${props => props.size === "36" ? "20px" : "23px"};
         width:100%;
         transition: ${transiton};
         padding-bottom:5px;
-        border: 1px solid ${props => props.borde ? props.color : "transparent"};
+        border: 1px solid ${props => props.borde ? (props.disabled ? colors.disabled : props.color) : "transparent"};
         
         &:disabled{ 
-            cursor:pointer;
-            color:white;
-            background-color:${colors.disabled};
-            border-color:${colors.disabled};
+            cursor:not-allowed;
+            opacity:${props => !props.active ? .8 : 1};
+        }
+        
+        &:hover{
+            box-shadow:${sombra};
         }
     }
     
@@ -45,7 +47,7 @@ export const Container = styled.div<Props>`
         opacity: ${props => props.active ? 1 : 0};
         left:50%;
         transform:translate(-50%,-60%) rotate(-45deg) ;
-        background-color:${props => props.disabled ? colors.disabled : (props.color ? 'transparent' : colors.blue)};
+        background-color:${props => props.color ? 'transparent' : colors.blue};
         transition: ${transiton};
     }
 `

@@ -13,7 +13,8 @@ interface Props {
     setFocus:()=> void;
     setBlur:()=> void;
     setValue:(e:any)=> void;
-    error?:boolean
+    error?:boolean;
+    Ref?:any
 }
 
 type City = {
@@ -58,12 +59,25 @@ const SelectCities:React.FC<Props> = (props) => {
         );
     };
 
+    let singleVal = (props:any) => {
+        return (
+            <Flex flex={"1 0 55%"} jc={"flex-start"}>
+                <components.SingleValue {...props} >
+                    {props.data.value}
+                </components.SingleValue>
+            </Flex>
+        );
+    };
+
 
     let addcities = ()=> {
-        let cantidad = 500;
+        let cantidad = 150;
         let copycities = [...getCities()];
         let citiesN  = copycities.filter( (_,key) => key < cantidad )
-        let cities = citiesN.map((item:City)=> ({"label": item.nombre,"value":item.indicativo}))
+        let cities = citiesN.map((item:City)=> ({
+            "label": item.nombre + "["+ item.indicativo + "]",
+            "value":item.indicativo,
+        }))
         set({...MyState, options:cities})
     }
 
@@ -71,7 +85,7 @@ const SelectCities:React.FC<Props> = (props) => {
 
 
         let cities = [...getCities()];
-        let reduceCities:City_reduced[]= cities.map(obj=>({"label":obj.nombre,"value":obj.indicativo}))
+        let reduceCities:City_reduced[]= cities.map(obj=>({"label":`${obj.nombre} [ ${obj.indicativo} ]`,"value":obj.indicativo}))
         let nuevascities:City_reduced[] = [];
 
 
@@ -141,6 +155,7 @@ const SelectCities:React.FC<Props> = (props) => {
 
         return (
             <Select
+                ref={props.Ref}
                 className="basic-single"
                 classNamePrefix="select"
                 defaultValue={MyState.options[1]}
@@ -148,14 +163,17 @@ const SelectCities:React.FC<Props> = (props) => {
                 isClearable={true}
                 onChange={(e)=> props.setValue(e)}
                 onInputChange={(e) => filtrar(e) }
+                placeholder={"Seleccione una ciudad"}
                 // isRtl={isRtl}
                 isSearchable={true}
                 name="label"
                 disabled={props.disabled}
                 options={MyState.options}
                 styles={customStyles}
+                noOptionsMessage={()=>'Sin coincidencias.'}
                 components={{
                     DropdownIndicator:Mychevron,
+                    SingleValue:singleVal
                 }}
                 onFocus={()=> {
                     props.setFocus()

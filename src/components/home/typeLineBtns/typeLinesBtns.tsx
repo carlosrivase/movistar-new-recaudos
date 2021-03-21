@@ -6,10 +6,11 @@ import {Collapse} from "react-collapse";
 
 
 interface Props {
-    Set:(e:string)=> void,
-    active:string,
-    open:boolean,
-    disabled:boolean
+    Set:(e:string)=> void;
+    active:string;
+    open:boolean;
+    disabled:boolean;
+    corporativo:boolean;
 }
 
 const TypeLineBtns:React.FC<Props> = (props) => {
@@ -38,6 +39,19 @@ const TypeLineBtns:React.FC<Props> = (props) => {
                    onClick={() => props.Set('fija')}
                    disabled={props.disabled}
                />
+
+               {props.corporativo &&
+               <Btntab
+                   color={colors.blueDark}
+                   className={"px-2"}
+                   borde
+                   noArrow
+                   flex={"0 0 90px"}
+                   children={"Corporativa"}
+                   active={props.active === "corporativa"}
+                   onClick={() => props.Set('corporativa')}
+                   disabled={props.disabled}
+               />}
            </Flex>
        </Collapse>
     )
