@@ -15,5 +15,8 @@ export const Container = styled.div`
             outline:none;
             background:#f1f1f2;
         }
+        &:disabled{
+            color:#999999;
+        }
     }
 `;

@@ -37,7 +37,7 @@ const Suscription:React.FC <Props> = (props) => {
 
     return (
         <Flex className={"wc"} flex={"1 0 80%"}>
-           <div className={"col-12 col-sm-10 mx-auto col-md-6 col-lg-5 col-xl-4"}>
+           <div className={"col-12 col-sm-10 mx-auto col-md-6 col-lg-5 col-xl-4 px-3"}>
                <p className={"fz22 text-center mb-3"}>
                    <span className={"fb"}>Información</span>
                    <br/> de tu cuenta
@@ -62,7 +62,7 @@ const Suscription:React.FC <Props> = (props) => {
                            if(toHome) return props.history.push('/');
                            props.history.push('/detail')
                        }}
-                       className={"col-6 col-md-5 fz18"}
+                       className={"col-12 col-md-5 fz18 order-3 order-md-0 mt-3 mt-md-0"}
                        type={"line"}
                        big
                        disabled={data.processing}
@@ -72,10 +72,10 @@ const Suscription:React.FC <Props> = (props) => {
                        onClick={()=>{
                            set({...data,processing:true})
                        }}
-                       className={"col-6 col-md-7 ps-3 fz18"}
+                       className={"col-12 col-md-7 ps-md-3 fz18"}
                        loading={data.processing}
                        big
-                       color={colors.blueDark}>Programe sus pagos
+                       color={colors.blueDark}>Programar pagos
                    </Btn>
                </Flex>
                <MediosPagosIcons/>

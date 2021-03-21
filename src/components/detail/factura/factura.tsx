@@ -34,7 +34,7 @@ const Factura:React.FC<Props> = (props) => {
                         set={()=> props.swith(props.id, !props.active)}
                     />
                 </Flex>
-                <Flex flex={"2 0 150px"} jc={"flex-start"}>
+                <Flex flex={"2 0 150px"} jc={"flex-start"} className={"legend"}>
                     {props.legend}
                 </Flex>
                 <Flex flex={"1 0 120px"} jc={"flex-end"}>

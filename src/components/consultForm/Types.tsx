@@ -19,3 +19,28 @@ export type dataToSend = {
     numero    :  string;
     checkout  :  string;
 };
+
+
+type parameter = {
+    porametro:string,
+    value:string
+}
+
+export type requestFacturaObj = {
+    "consulta":parameter[],
+    "dominio": string
+}
+
+export type requestFactura = {
+    paymentRef:string;
+    invoiceType:string;
+    isRefNumber:string;
+    comerce:string;
+    [key:string]:any;
+}
+
+export type tkn = {
+    result:boolean,
+    token:string,
+    message:string,
+}

@@ -24,7 +24,6 @@ const Home: React.FC<Props> = (props) => {
                         {/* /////// Formulario de consulta */}
                         <ConultForm/>
 
-
                         <div className={"wc pt-3 text-center"}>
                             <a
                                 target={"_blank"}

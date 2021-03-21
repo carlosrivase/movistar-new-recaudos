@@ -39,22 +39,35 @@ const Field: React.FC<Props> = (props) => {
             </Flex>}
 
 
-            {props.type === "mask" &&
-            <Cleave
-                ref={props.theRef}
-                disabled={props.disabled}
-                className={"to-right wc"}
-                value={props.value}
-                options={{
-                    blocks:[3,3,4,4]
-                }}
-                onChange={(e:any)=> {
-                    let obj = {target:{value:e.target.rawValue}}
-                    props.onChange(e)
-                }}
-                placeholder={props.placeholder }
-            />
-
+            {props.type === "number" &&
+                <>
+                    <input
+                        type="number"
+                        pattern={"[0-9]"}
+                        ref={props.theRef}
+                        className={"d-md-none"}
+                        onChange={(e:any)=> {
+                            let obj = {
+                                target:{value:e.target.value.replace(/[^0-9]/g,'')}
+                            }
+                            props.onChange(e)
+                        }}
+                    />
+                    <Cleave
+                        ref={props.theRef}
+                        disabled={props.disabled}
+                        className={"to-right wc d-none d-md-block"}
+                        value={props.value}
+                        options={{
+                            blocks:[3,3,4,4]
+                        }}
+                        onChange={(e:any)=> {
+                            let obj = {target:{value:e.target.rawValue}}
+                            props.onChange(obj)
+                        }}
+                        placeholder={props.placeholder }
+                    />
+                </>
             }
 
             {props.type === "select" &&

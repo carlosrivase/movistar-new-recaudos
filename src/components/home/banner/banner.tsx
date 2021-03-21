@@ -21,7 +21,7 @@ const Banner: React.FC = (props) => {
                             <div className="title cw">Disfruta más de tu tiempo</div>
                             <p className={"cw"}>Programa tus pagos y hazlo todo más fácil</p>
                         </div>
-                        <div className={"cw"}>
+                        <div className={"cw pb-4 mb-4"}>
                             <div className={"mb-2"}> <i className={"icon-tarjeta"}></i> Paga en línea todo tus productos</div>
                             <div className={"mb-2"}> <i className={"icon-equipo"}></i> Paga con tarjeta de crédito o debito</div>
                             <div className={"mb-2"}> <i className={"icon-dinero"}></i> Pagos automáticos con un clic</div>

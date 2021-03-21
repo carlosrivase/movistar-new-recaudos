@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Flex from "../ui/flex";
-import Total from "./../../img/total.svg"
+// @ts-ignore
+import Total from "../../img/total.svg";
 import Btn from "../ui/btn";
 import {colors} from "../ui";
 import Info from "./info/info";
@@ -9,6 +10,8 @@ import {FacturasQuemadas} from "./facturasQuemadas";
 import EpaycoFooter from "../epaycofooter/epaycoFooter";
 import {withRouter} from "react-router-dom";
 import MediosPagosIcons from "../ui/mediosPagos/MediosPagos";
+import {DP, statedetail} from "./types";
+import {CreateInvoiceGroup} from "./Helper/Helper";
 
 interface Props {
     history?:any;
@@ -16,36 +19,55 @@ interface Props {
 
 const Details:React.FC<Props> = (props) => {
 
-    const [detail,set]=useState({
-        totalToPay:1485555,
+    const [detail,set]=useState<statedetail>({
+        totalToPay:0,
         facturasGrupos:[],
-        processing:false
+        processing:false,
+        identificacionEmpresa:'',
+        facturaId:'',
     })
+
+    let dataPayment:string  = sessionStorage.getItem('dataPayment') || '';
+
+    useEffect(()=>{
+        if(dataPayment){
+            let dta:DP[] = JSON.parse(dataPayment);
+            set({
+                ...detail,
+                facturasGrupos:CreateInvoiceGroup(dta),
+                identificacionEmpresa:dta[0].identificacionEmpresa,
+                facturaId:dta[0].facturaId,
+            });
+        }
+    },[])
 
 
     return (
         <Flex className={"wc px-3 px-sm-5"} flex={"1 0 80%"}>
-            <div className="col-12 mx-auto col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+            <div className="col-12 mx-auto col-sm-10 col-md-8 col-lg-6 col-xl-6 col-xxl-5">
                 <Flex className={"wc pt-3"}>
                     <img src={Total} alt="" className={"mb-3 mb-md-0 me-md-4"}/>
-                    <Flex jc={"flex-start"} flex={"0 0 auto" }>
+                    <Flex jc={"flex-start"} flex={"0 0 auto"} className={"px-3"}>
                         <p className={"mb-0 wc fz18"}>Número de línea </p>
-                        <small>Referencia de pago </small>
+                        <small>Referencia de pago {detail.identificacionEmpresa}</small>
                     </Flex>
                 </Flex>
 
                 <div className={"text-center py-4"}>
                     <p className={"mb-0 fl fz18"}>Información de tu factura</p>
-                    <small>Factura No. 596810665453</small>
+                    <small>Factura No. {detail.facturaId}</small>
                 </div>
 
-                <FacturaAndDetail
-                    total={detail.totalToPay}
-                    active={false}
-                    facturas={FacturasQuemadas}
-                    handleTotal={(amount:number)=> set({...detail,totalToPay: amount}) }
-                    showDetail={detail.facturasGrupos.length < 1}
-                />
+                {   detail.facturasGrupos.length &&
+                    detail.facturasGrupos.map((item)=>
+                        <FacturaAndDetail
+                            total={item.total}
+                            active={item.active}
+                            facturas={item.facturas}
+                            handleTotal={(amount:number)=> set({...detail,totalToPay: amount}) }
+                            showDetail={!!(item.facturas.length)}
+                        />
+                    )}
 
                 <Flex className="col-12 mx-auto col-md-10 col-lg-8 py-3">
                     <Btn
@@ -83,7 +105,6 @@ const Details:React.FC<Props> = (props) => {
                 </Flex>
 
                 <Info/>
-
 
                 <MediosPagosIcons/>
                 <EpaycoFooter noIcon={true} className={"pb-3 pt-2"}/>

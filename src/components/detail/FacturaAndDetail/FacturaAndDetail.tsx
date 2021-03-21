@@ -81,7 +81,7 @@ const FacturaAndDetail: React.FC<Props> = (props) => {
                     original:i.monto
                 })),
                 total:props.total,
-                showDetail:!!(props.showDetail && state.facturas.length)
+                showDetail:!!(props.showDetail && props.facturas.length)
             })
         }
     }, [])
@@ -111,7 +111,7 @@ const FacturaAndDetail: React.FC<Props> = (props) => {
                             id={key}
                             active={factura.active}
                             key={key}
-                            disabled={false}
+                            disabled={factura.original === "0"}
                             monto={factura.monto}
                             legend={factura.legend}
                             onChange={(id:number,amount:string) => upDateAmountFactura(id, amount)}

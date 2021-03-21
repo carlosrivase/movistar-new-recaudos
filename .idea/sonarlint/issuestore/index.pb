@@ -112,3 +112,5 @@ K
 ,src/components/consultForm/Helpers/index.tsx,1/2/12522799cf54910af49e5f0f9e423b68e854d76c
 O
 src/components/detail/types.tsx,1/c/1c35102c34d6838ba236744e7c5d0d2aa56ea9cb
+`
+0src/components/consultForm/Requests/movistar.tsx,b/1/b17a756f47b1916b5257da2fb85c1803a0e422ff

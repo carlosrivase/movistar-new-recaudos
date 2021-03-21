@@ -15,6 +15,10 @@ export const Container =styled.div<Props>`
     padding:0;
     position:relative;
     
+    &:hover{
+        background-color:#f1f1f2;
+    }
+    
     input{
         position:absolute;
         top:0;
@@ -23,6 +27,11 @@ export const Container =styled.div<Props>`
         height:100%;
         z-index:3;
         opacity:0;
+        cursor:pointer;
+        
+        &:disabled{
+           cursor:not-allowed;
+        }
     }
     
     .chulo{

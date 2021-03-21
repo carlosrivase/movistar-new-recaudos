@@ -7,7 +7,8 @@ import Campo from "../ui/field/field";
 import GroupBtns from "../home/GroupBtns/GroupBtns";
 import {withRouter} from "react-router-dom";
 import {DataFromSmartLink} from "./Helpers";
-import {finales,dataToSend} from "./Types";
+import {finales, dataToSend, requestFactura} from "./Types";
+import {GET_FACTURAS, GetToken} from "./Requests/movistar";
 
 interface Props {
     history:any
@@ -37,15 +38,27 @@ const ConultForm: React.FC<Props> = (props) => {
     const inputRef  :any = useRef(null);
     const selectRef :any = useRef(null);
 
-    let submit = (type: string) => {
+    let submit = async (type: string) => {
         set({...state, processing: type});
-        setTimeout(function(){
-            if(type === "suscription"){
-                props.history.push('/suscription');
-            }else{
-                props.history.push('/detail');
-            }
-        },1500)
+
+        let data:requestFactura = {
+            isRefNumber:"true",
+            invoiceType:state.typeLine,
+            comerce:"comerce",
+            paymentRef:state.number
+        }
+
+        let request = await GET_FACTURAS(data);
+
+        if(request.result){
+            set({...state,processing:''})
+            sessionStorage.setItem('dataPayment',JSON.stringify(request.facturas))
+            props.history.push('/detail')
+
+        }else{
+            set({...state,processing:''})
+        }
+
     }
 
 
@@ -104,6 +117,8 @@ const ConultForm: React.FC<Props> = (props) => {
            inputRef.current.element?.focus()
        }
 
+        console.log(GetToken())
+
     },[])
 
     return (
@@ -142,7 +157,7 @@ const ConultForm: React.FC<Props> = (props) => {
                     value={state.number}
                     onChange={(e: any) => set({...state, number: e.target.value})}
                     disabled={!!state.processing}
-                    type={"mask"}
+                    type={"number"}
                     icon={state.typeLine === 'fija' ? 'fijo' : "movil"}
                     theRef={inputRef}
                     placeholder={"Ingresa el número de línea o de pago"}
