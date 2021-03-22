@@ -37,8 +37,8 @@ const Suscription:React.FC <Props> = (props) => {
 
     return (
         <Flex className={"wc"} flex={"1 0 80%"}>
-           <div className={"col-12 col-sm-10 mx-auto col-md-6 col-lg-5 col-xl-4 px-3"}>
-               <p className={"fz22 text-center mb-3"}>
+           <div className={"col-12 col-sm-10 mx-auto col-md-6 col-lg-5 col-xl-5 px-3"}>
+               <p className={"fz22 text-center mb-3 mb-lg-5"}>
                    <span className={"fb"}>Información</span>
                    <br/> de tu cuenta
                </p>
@@ -55,6 +55,8 @@ const Suscription:React.FC <Props> = (props) => {
                    <span className={"fb"}>Valor a pagar</span>
                    <span>{data.amount}</span>
                </Flex>
+
+               <div className={"wc py-2 col-12 mb-2"} style={{borderBottom:"1px solid #999999"}}></div>
 
                <Flex className={"pt-3 mb-4 pb-4"}>
                    <Btn

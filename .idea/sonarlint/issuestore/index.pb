@@ -114,3 +114,7 @@ O
 src/components/detail/types.tsx,1/c/1c35102c34d6838ba236744e7c5d0d2aa56ea9cb
 `
 0src/components/consultForm/Requests/movistar.tsx,b/1/b17a756f47b1916b5257da2fb85c1803a0e422ff
+W
+'src/components/detail/Helper/Helper.tsx,8/6/8658cdf55474c2c969114de3f9fb97646e80752c
+|
+Lsrc/components/consultForm/Requests/Suscription/servicios/getConfigFileds.js,9/b/9be2e60482ad76dc99625e8d65f109237a45bd8e

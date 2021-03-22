@@ -46,6 +46,8 @@ const Field: React.FC<Props> = (props) => {
                         pattern={"[0-9]"}
                         ref={props.theRef}
                         className={"d-md-none"}
+                        placeholder={props.placeholder }
+                        disabled={props.disabled}
                         onChange={(e:any)=> {
                             let obj = {
                                 target:{value:e.target.value.replace(/[^0-9]/g,'')}

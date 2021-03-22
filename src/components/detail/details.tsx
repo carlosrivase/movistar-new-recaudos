@@ -59,8 +59,9 @@ const Details:React.FC<Props> = (props) => {
                 </div>
 
                 {   detail.facturasGrupos.length &&
-                    detail.facturasGrupos.map((item)=>
+                    detail.facturasGrupos.map((item,key)=>
                         <FacturaAndDetail
+                            key={key}
                             total={item.total}
                             active={item.active}
                             facturas={item.facturas}

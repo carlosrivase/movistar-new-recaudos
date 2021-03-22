@@ -24,6 +24,8 @@ const ConultForm: React.FC<Props> = (props) => {
         processing: string;
         indicative: string,
         isCorporativo:boolean;
+        error:string;
+        errorServer:string;
     }
 
     const [state, set] = useState<Estado>({
@@ -32,33 +34,30 @@ const ConultForm: React.FC<Props> = (props) => {
         number: '',
         processing: '',
         indicative: '',
-        isCorporativo:false
+        isCorporativo:false,
+        error:'',
+        errorServer:''
     })
 
     const inputRef  :any = useRef(null);
     const selectRef :any = useRef(null);
 
     let submit = async (type: string) => {
-        set({...state, processing: type});
-
+        set({...state, processing: type, errorServer: ''});
         let data:requestFactura = {
             isRefNumber:"true",
             invoiceType:state.typeLine,
             comerce:"comerce",
             paymentRef:state.number
         }
-
         let request = await GET_FACTURAS(data);
-
-        if(request.result){
+        if(request.result && request.facturas.length){
             set({...state,processing:''})
             sessionStorage.setItem('dataPayment',JSON.stringify(request.facturas))
             props.history.push('/detail')
-
         }else{
-            set({...state,processing:''})
+            set({...state,processing:'',errorServer:"No se encontraron facturas asociadas a este número."})
         }
-
     }
 
 
@@ -71,7 +70,6 @@ const ConultForm: React.FC<Props> = (props) => {
 
 
     useEffect(()=>{
-
 
         if(props.history.location.pathname === "/"){
             sessionStorage.clear();
@@ -161,6 +159,7 @@ const ConultForm: React.FC<Props> = (props) => {
                     icon={state.typeLine === 'fija' ? 'fijo' : "movil"}
                     theRef={inputRef}
                     placeholder={"Ingresa el número de línea o de pago"}
+                    error={state.error || state.errorServer }
                 />
             </div>
 
