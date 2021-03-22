@@ -79,6 +79,7 @@ export let validateRoute = (changeLocation:(e:string)=> void )=> {
                         pathname === '/corporativo/' ||
                         pathname === 'corporativo/') {
                         changeLocation(`/corporativo${search}&tipo_pago=movistar`);
+                        console.log("puto")
                         sessionStorage.setItem('isCorporativo', '1');
                     }
                 }

@@ -33,14 +33,14 @@ const SendEmail:React.FC<Props> = (props) => {
             <Field
                 value={state.email}
                 icon={"mail"}
-                flex={"1 0 65%"}
+                flex={"1 0 60%"}
                 onChange={(e:any) => set({...state,email:e.target.value})}
                 disabled={state.proccesing}
                 error={state.error}
             />
             <Btn
                 color={colors.blue}
-                flex={"1 0 100px"}
+                flex={"1 0 80px"}
                 className={"ps-2 fz18"}
                 onClick={() => sendEmail()}
                 big

@@ -9,6 +9,7 @@ import {withRouter} from "react-router-dom";
 import {DataFromSmartLink} from "./Helpers";
 import {finales, dataToSend, requestFactura} from "./Types";
 import {GET_FACTURAS, GetToken} from "./Requests/movistar";
+import {Simulate} from "react-dom/test-utils";
 
 interface Props {
     history:any
@@ -73,6 +74,10 @@ const ConultForm: React.FC<Props> = (props) => {
 
         if(props.history.location.pathname === "/"){
             sessionStorage.clear();
+        }
+
+        if(props.history.location.pathname === "/corporativo"){
+            sessionStorage.setItem('isCorporativo','1');
         }
 
         if (window.location.search !== "") {
@@ -166,7 +171,7 @@ const ConultForm: React.FC<Props> = (props) => {
             <GroupBtns
                 loading={state.processing}
                 action={(ty: string) => submit(ty)}
-                number={state.number.length > 6}
+                number={state.number}
             />
         </>
     )
