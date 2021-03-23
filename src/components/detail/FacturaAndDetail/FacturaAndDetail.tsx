@@ -16,11 +16,13 @@ interface Props {
     active:boolean,
     handleTotal:(amount:number)=> void;
     showDetail:boolean;
+    upDateMain:(id:number,data:any)=> void,
+    idPadre:number;
 }
 
 interface State {
     showDetail?: boolean;
-    facturas: Array<FacturaObj>;
+    extras: Array<FacturaObj>;
     total: number | string;
 }
 
@@ -28,7 +30,7 @@ const FacturaAndDetail: React.FC<Props> = (props) => {
 
     const [state, set] = useState<State>({
         showDetail: false,
-        facturas: [],
+        extras: [],
         total: 155555,
     })
 
@@ -36,44 +38,11 @@ const FacturaAndDetail: React.FC<Props> = (props) => {
         props.handleTotal(parseInt(state.total.toString()));
     },[state.total])
 
-    let upDateAmountFactura = (id:number,amount:string) =>{
-        amount = amount.replace(/[^0-9]/g,'');
-
-        let total: number = 0;
-        let copyFacturas = [...state.facturas]
-            .map((item:any)=>{
-                if(item.id === id) {
-                    item.monto = amount
-                }
-                total = total + parseInt(item.monto)
-                return item;
-            });
-
-        set({
-            ...state,
-            facturas:copyFacturas,
-            total
-        })
-    }
-    let activateItem = (id:number, cond:boolean)=>{
-        let monto = '';
-        let copArr = [...state.facturas]
-            .map((item:any)=>{
-            if(item.id === id){
-                item.active = cond;
-                monto = item.monto
-            }
-            return item;
-        })
-        monto = (cond ? parseInt( state.total.toString()) + parseInt(monto) : parseInt(state.total.toString()) - parseInt(monto)).toString();
-        set({...state,facturas:copArr, total:monto})
-    }
-
     useEffect(() => {
 
         if(props.facturas){
             set({...state,
-                facturas: props.facturas.map((i:any,key:number)=>({
+                extras : props.facturas.map((i:any,key:number)=>({
                     id:key,
                     monto:i.monto,
                     legend:i.legend,
@@ -86,6 +55,48 @@ const FacturaAndDetail: React.FC<Props> = (props) => {
         }
     }, [])
 
+    // actualiza valor y check
+    let upDateAmountFactura = (id:number,amount:string) =>{
+        amount = amount.replace(/[^0-9]/g,'');
+
+        let total: number = 0;
+        let copyFacturas = [...state.extras ]
+            .map((item:any)=>{
+                if(item.id === id) {
+                    item.monto = amount
+                }
+                total = total + parseInt(item.monto)
+                return item;
+            });
+
+        set({
+            ...state,
+            extras :copyFacturas,
+            total
+        })
+
+        props.upDateMain(props.idPadre, {
+            total,
+            extra6:copyFacturas[0].monto,
+            extra7:copyFacturas[1].monto,
+            extra8:copyFacturas[2].monto,
+        })
+    }
+
+    let activateItem = (id:number, cond:boolean)=>{
+        let monto = '';
+        let copArr = [...state.extras]
+            .map((item:any)=>{
+                if(item.id === id){
+                    item.active = cond;
+                    monto = item.monto
+                }
+                return item;
+            })
+        monto = (cond ? parseInt( state.total.toString()) + parseInt(monto) : parseInt(state.total.toString()) - parseInt(monto)).toString();
+        set({...state,extras:copArr, total:monto})
+    }
+
     return (
         <>
             <FacturaMain
@@ -95,7 +106,7 @@ const FacturaAndDetail: React.FC<Props> = (props) => {
                 showDetail={() => set({...state, showDetail: !state.showDetail})}
                 total={state.total}
                 detailActive={!!(state.showDetail)}
-                hideChevron={!state.facturas.length}
+                hideChevron={!state.extras.length}
             />
 
             <Collapse isOpened={!!(state.showDetail)}>
@@ -105,8 +116,8 @@ const FacturaAndDetail: React.FC<Props> = (props) => {
                         <Flex flex={"1 0 auto"}> </Flex>
                         <Flex flex={"0 0 80px"}><small>Valor</small></Flex>
                     </Flex>
-                    {state.facturas.length &&
-                     state.facturas.map((factura:any, key) =>
+                    {state.extras.length &&
+                     state.extras.map((factura:any, key) =>
                         <Factura
                             id={key}
                             active={factura.active}

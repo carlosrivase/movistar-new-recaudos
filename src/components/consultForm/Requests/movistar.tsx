@@ -47,7 +47,6 @@ export const RequestInvoiceMovistar = async (data:requestFactura)=> {
         })
             .then((resp:any) =>{
                 if(resp.status === 200){
-                    console.log(resp)
                     obj.facturas = resp.data.data.facturas;
                     obj.total    = resp.data.data.total
                     obj.result   = true

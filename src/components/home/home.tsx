@@ -11,6 +11,11 @@ interface Props {
 }
 
 const Home: React.FC<Props> = (props) => {
+
+    useEffect(()=>{
+        sessionStorage.clear();
+    },[])
+
     return (
         <Flex className={"wc"} flex={"1 0 70%"} alg={"stretch"}>
             <Flex
