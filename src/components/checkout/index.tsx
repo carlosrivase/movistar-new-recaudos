@@ -2,56 +2,6 @@ import React from "react";
 import config from "../../config/config";
 
 
-export type facuraresp = {
-    descripcion:string;
-    documento:string;
-    extra1: string;
-    extra2: string;
-    extra3: string;
-    extra4: string;
-    extra5: boolean;
-    extra6: number;
-    extra7: number;
-    extra8: number;
-    extra9: string;
-    extra10: boolean;
-    extra11: boolean;
-    facturaId:string;
-    id: string;
-    identificacionEmpresa:string;
-    moneda: string;
-    total: number;
-}
-
-let fdasf = {
-    showServices: true,
-    data: [],
-    amounToPay: "",
-    payment_ref: "",
-    total_balance: "",
-    is_greta: false,
-    canal: "",
-    extra10: "",
-    is_ref_number: "",
-    number: "",
-    account_number: "",
-    num_document: "",
-    num_control: "",
-    invoice_type: "",
-    public_key: "",
-    fecha_expiracion: "",
-    control_num: "",
-    empresa: '',
-    metrotelRefNumber: false,
-    canSusbcribe: false
-}
-
-export const checkoutRender = () =>{
-    const script:any = document.createElement('script');
-    script.src = config.EPAYCO_APP_CHECKOUT;
-    document.body.appendChild(script);
-};
-
 declare global {
     interface Window {
         ePayco:any;
@@ -61,6 +11,12 @@ declare global {
         onHistoryGo:any;
     }
 }
+
+export const checkoutRender = () =>{
+    const script:any = document.createElement('script');
+    script.src = config.EPAYCO_APP_CHECKOUT;
+    document.body.appendChild(script);
+};
 
 
 

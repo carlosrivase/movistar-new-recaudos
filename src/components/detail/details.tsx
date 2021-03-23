@@ -32,7 +32,6 @@ const Details:React.FC<Props> = (props) => {
     let dataPayment:string  = sessionStorage.getItem('dataPayment') || '';
 
 
-
     let Pay = async () =>{
         let dataTOCheckout = JSON.parse(dataPayment)[0];
         set({...detail,processing:true});

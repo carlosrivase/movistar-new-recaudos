@@ -70,6 +70,13 @@ const ConultForm: React.FC<Props> = (props) => {
 
 
     useEffect(()=>{
+
+        if(props.history.location.pathname === '/corporativo'){
+            set({...state,
+                isCorporativo:true,
+            })
+        }
+
         if (window.location.search !== "") {
             let data:dataToSend = DataFromSmartLink();
             let actives:finales = {

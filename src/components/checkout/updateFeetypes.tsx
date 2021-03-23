@@ -25,9 +25,6 @@ export const buildFeetypeData = (data:any)=> {
 
 export const UpdateFeeTypes = async (feetypes:typesFeetypes) =>{
     let obj = {result:false};
-
-    console.log(feetypes, "::::: ft::");
-
     try{
         await axios({
             method:'post',
@@ -46,6 +43,5 @@ export const UpdateFeeTypes = async (feetypes:typesFeetypes) =>{
     catch (e) {
         console.log('::::: Error al intentar actualizar feetypes ::::', e)
     }
-
     return obj;
 }

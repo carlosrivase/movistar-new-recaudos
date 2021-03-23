@@ -4,21 +4,6 @@ import {GroupInvoice, Extras, Invoice} from "../types";
 import {UpdateFeeTypes, buildFeetypeData} from "../../checkout/updateFeetypes";
 
 
-type Extra = {
-    legend: string;
-    monto: string;
-    extra: string;
-    id: number
-}
-
-type grupoFactura = {
-    id: number;
-    total: number;
-    active: boolean;
-    totalToPay: number;
-    facturas: Extra[];
-}
-
 //////////////////////////////////////////
 // ARMA EL OBJETO DE DETALLES
 //////////////////////////////////////////
