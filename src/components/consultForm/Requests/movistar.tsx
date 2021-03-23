@@ -37,7 +37,7 @@ export const RequestInvoiceMovistar = async (data:requestFactura)=> {
                         "value": ""
                     }
                 ],
-                "dominio": "https://reviewkarina.epayco.io/recaudo/test"
+                "dominio": "https://reviewkarina.epayco.io/recaudo/moviprueba3"
             },
             headers: {
             'Accept': 'application/json',
