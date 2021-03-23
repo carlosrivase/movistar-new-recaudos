@@ -11,7 +11,9 @@ import EpaycoFooter from "../epaycofooter/epaycoFooter";
 import {withRouter} from "react-router-dom";
 import MediosPagosIcons from "../ui/mediosPagos/MediosPagos";
 import {DP, statedetail} from "./types";
-import {CreateInvoiceGroup} from "./Helper/Helper";
+import {CreateInvoiceGroup,updateInvroiceGroup} from "./Helper/Helper";
+import {UpdateFT} from "./Helper/Helper";
+import {OpenCheckout} from "../checkout";
 
 interface Props {
     history?:any;
@@ -29,16 +31,29 @@ const Details:React.FC<Props> = (props) => {
 
     let dataPayment:string  = sessionStorage.getItem('dataPayment') || '';
 
-    useEffect(()=>{
-        if(dataPayment){
-            let dta:DP[] = JSON.parse(dataPayment);
-            set({
-                ...detail,
-                facturasGrupos:CreateInvoiceGroup(dta),
-                identificacionEmpresa:dta[0].identificacionEmpresa,
-                facturaId:dta[0].facturaId,
-            });
+
+    let Pay = async () =>{
+        set({...detail,processing:true});
+        let FTUP = await UpdateFT(detail.facturasGrupos[0]);
+        if(FTUP.result){
+            console.log("actualice ft::::::")
         }
+    }
+
+    useEffect(()=>{
+
+        if(!sessionStorage.getItem('dataPayment')){
+            return props.history.push('/');
+        }
+
+        let dta:DP[] = JSON.parse(dataPayment);
+        set({
+            ...detail,
+            facturasGrupos:CreateInvoiceGroup(dta),
+            identificacionEmpresa:dta[0].identificacionEmpresa,
+            facturaId:dta[0].facturaId,
+        });
+
     },[])
 
 
@@ -61,12 +76,16 @@ const Details:React.FC<Props> = (props) => {
                 {   detail.facturasGrupos.length &&
                     detail.facturasGrupos.map((item,key)=>
                         <FacturaAndDetail
+                            idPadre={key}
                             key={key}
                             total={item.total}
                             active={item.active}
                             facturas={item.facturas}
                             handleTotal={(amount:number)=> set({...detail,totalToPay: amount}) }
                             showDetail={!!(item.facturas.length)}
+                            upDateMain={(id:number,data:any)=>
+                                updateInvroiceGroup(id,data,detail.facturasGrupos, (obj:any)=> set({...detail,...obj}))
+                            }
                         />
                     )}
 
@@ -96,10 +115,10 @@ const Details:React.FC<Props> = (props) => {
                         flex={"1 0 45%"}
                         big
                         className={"ps-2 fz20"}
-                        onClick={()=> null}
+                        onClick={()=> Pay()}
                         color={colors.blueDark}
+                        loading={(detail.processing)}
                         disabled={parseInt(detail.totalToPay.toString()) < 1}
-
                     >
                         Pagar
                     </Btn>

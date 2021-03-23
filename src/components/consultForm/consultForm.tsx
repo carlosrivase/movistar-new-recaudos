@@ -70,11 +70,6 @@ const ConultForm: React.FC<Props> = (props) => {
 
 
     useEffect(()=>{
-
-        if(props.history.location.pathname === "/"){
-            sessionStorage.clear();
-        }
-
         if (window.location.search !== "") {
             let data:dataToSend = DataFromSmartLink();
             let actives:finales = {
@@ -109,14 +104,10 @@ const ConultForm: React.FC<Props> = (props) => {
                 number
             })
         }
-
         // focus al input
        if(inputRef.current) {
            inputRef.current.element?.focus()
        }
-
-        console.log(GetToken())
-
     },[])
 
     return (
@@ -166,7 +157,7 @@ const ConultForm: React.FC<Props> = (props) => {
             <GroupBtns
                 loading={state.processing}
                 action={(ty: string) => submit(ty)}
-                number={state.number.length > 6}
+                number={state.number}
             />
         </>
     )

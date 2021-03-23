@@ -22,8 +22,8 @@ const Resume: React.FC<Props> = (props) => {
     })
 
     return (
-        <Flex className={"wc"} flex={"1 0 80%"}>
-            <div className={"col-12 text-center"}>
+        <Flex className={"wc p-3"} flex={"1 0 80%"}>
+            <div className={"col-12 text-center py-3"}>
                 <p className={"mb-0 fz26 fl ct"}>Transaccion Aceptada <i className={"icon-icon-check"}></i></p>
             </div>
             <Flex className={"col-12 col-md-10 col-lg-8 "} alg={"flex-start"}>
@@ -95,7 +95,7 @@ const Resume: React.FC<Props> = (props) => {
                     </Btn>
                 </Flex>
             </Flex>
-            <EpaycoFooter noIcon={true} className={"col-12"}/>
+            <EpaycoFooter noIcon={true} className={"col-12 pt-4"}/>
         </Flex>
     )
 }

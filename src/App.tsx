@@ -6,11 +6,13 @@ import {colors} from "./components/ui";
 import Flex from "./components/ui/flex";
 import {validateRoute} from "./utils/validateRoute";
 import {withRouter} from "react-router-dom";
+import {checkoutRender} from "./components/checkout";
 
 const Home = lazy(() => import('./components/home/home'));
 const Detail = lazy(() => import('./components/detail/details'));
 const Suscription = lazy(() => import('./components/suscriptions/suscriptions'));
 const Resume = lazy(() => import('./components/resumen/resume'));
+
 
 
 interface Props {
@@ -27,6 +29,7 @@ const App:React.FC<Props> = (props) => {
     useEffect(()=>{
         console.log("men")
         validateRoute(goRoute);
+        checkoutRender();
     },[])
 
     return (
@@ -43,11 +46,11 @@ const App:React.FC<Props> = (props) => {
                         />
                     </Flex>
                 }>
-                    <Route exact path={'/'} render={() => <Home/>}/>
-                    <Route exact path={'/corporativo'} render={() => <Home/>}/>
-                    <Route exact path={'/detail'} render={() => <Detail/>}/>
-                    <Route exact path={'/suscription'} render={() => <Suscription/>}/>
-                    <Route exact path={'/resume'} render={() => <Resume/>}/>
+                    <Route exact path={'/'}            render={() => <Home/>        }/>
+                    <Route exact path={'/corporativo'} render={() => <Home/>        }/>
+                    <Route exact path={'/detail'}      render={() => <Detail/>      }/>
+                    <Route exact path={'/suscription'} render={() => <Suscription/> }/>
+                    <Route exact path={'/resume'}      render={() => <Resume/>      }/>
                 </Suspense>
             </div>
         </Switch>

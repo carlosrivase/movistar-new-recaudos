@@ -22,8 +22,8 @@ const urlFront = {
 const amonServices = {
     production: "https://amon.epayco.co/api/movistar/recaudo",
     development: "https://amon.epayco.co/api/movistar/recaudo",
-    test: "https://test.amon.epayco.io/api/movistar/recaudo",
-    local: "https://test.amon.epayco.io/api/movistar/recaudo",
+    test: "https://amon.epayco.io/api/movistar/recaudo",
+    local: "https://amon.epayco.xyz/api/movistar/recaudo",
 }[ENVIRONMENT];
 
 

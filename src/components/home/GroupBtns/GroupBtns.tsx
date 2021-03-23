@@ -7,7 +7,7 @@ import {colors} from "../../ui";
 interface Props {
     action:(t:string)=> void;
     loading?:string;
-    number?:boolean,
+    number?:string,
 }
 
 const GroupBtns:React.FC<Props> = (props) => {
@@ -18,7 +18,7 @@ const GroupBtns:React.FC<Props> = (props) => {
                 color={colors.blue}
                 big
                 loading={props.loading === "suscription"}
-                disabled={!props.number || (props.loading !== '' && props.loading !== 'suscription') }
+                disabled={!props.number || props.number.length < 8 || (props.loading !== '' && props.loading !== 'suscription') }
                 onClick={()=> props.action('suscription')}
             >
                 <i className={'icon-icon-tiempo'}> </i> Programar mis pagos
@@ -28,7 +28,7 @@ const GroupBtns:React.FC<Props> = (props) => {
                 type={"line"}
                 big
                 loading={props.loading === "consult"}
-                disabled={!props.number || (props.loading !== '' && props.loading !== 'consult')}
+                disabled={!props.number || props.number.length < 7  || (props.loading !== '' && props.loading !== 'consult')}
                 onClick={()=> props.action('consult')}
                 color={colors.blueDark}
             >
@@ -39,7 +39,7 @@ const GroupBtns:React.FC<Props> = (props) => {
                 color={colors.blueDark}
                 big
                 loading={props.loading === "pay"}
-                disabled={!props.number || (props.loading !== '' && props.loading !== 'pay') }
+                disabled={!props.number || props.number.length < 7  || (props.loading !== '' && props.loading !== 'pay') }
                 onClick={()=> props.action('pay')}
             >
                 Ir a pagar
