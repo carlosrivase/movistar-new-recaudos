@@ -17,7 +17,7 @@ export const buildFeetypeData = (data:any)=> {
         sumaDeviceInstAmtQIInfo : data.extra7,
         sumaAditionalContents   : data.extra8,
         totalAmount             : data.totalToPay,
-        control_num             : data.number,
+        control_num             : data.extra3,
         total_factura           : data.total
     })
 }
@@ -25,6 +25,8 @@ export const buildFeetypeData = (data:any)=> {
 
 export const UpdateFeeTypes = async (feetypes:typesFeetypes) =>{
     let obj = {result:false};
+
+    console.log(feetypes, "::::: ft::");
 
     try{
         await axios({

@@ -32,11 +32,16 @@ const Details:React.FC<Props> = (props) => {
     let dataPayment:string  = sessionStorage.getItem('dataPayment') || '';
 
 
+
     let Pay = async () =>{
+        let dataTOCheckout = JSON.parse(dataPayment)[0];
         set({...detail,processing:true});
         let FTUP = await UpdateFT(detail.facturasGrupos[0]);
         if(FTUP.result){
-            console.log("actualice ft::::::")
+            dataTOCheckout.total = detail.totalToPay;
+            OpenCheckout(dataTOCheckout,() => set({...detail,processing:false}));
+        }else{
+            set({...detail,processing:false});
         }
     }
 
@@ -45,8 +50,8 @@ const Details:React.FC<Props> = (props) => {
         if(!sessionStorage.getItem('dataPayment')){
             return props.history.push('/');
         }
-
         let dta:DP[] = JSON.parse(dataPayment);
+
         set({
             ...detail,
             facturasGrupos:CreateInvoiceGroup(dta),
@@ -107,7 +112,7 @@ const Details:React.FC<Props> = (props) => {
                         color={colors.blueDark}
                         type={'line'}
                         onClick={()=> props.history.push('/')}
-
+                        disabled={(detail.processing)}
                     >
                         Cancelar
                     </Btn>

@@ -23,8 +23,6 @@ export type facuraresp = {
     total: number;
 }
 
-
-
 let fdasf = {
     showServices: true,
     data: [],
@@ -64,7 +62,7 @@ declare global {
     }
 }
 
-export let ePayco = window.ePayco; // ok
+
 
 
 const getDataFetType = (key:string, value:string) => {
@@ -167,15 +165,22 @@ const PrepareDataCheckout = (data:any)=>{
     })
 }
 
-export let handler:any = ( values:any )=> ePayco.checkout.configure({
-    key: values.public_key ? values.public_key : config.movistar_key,
-    test: config.checkOutPruebas, //Modo produccion,
-    onClose: ()=> console.log("cerre men :::::::")
-});
 
-export const OpenCheckout = ( form:DataCheckout ) => {
+
+export const OpenCheckout = ( form:DataCheckout, callB:()=> void ) => {
     let data:DataCheckout = PrepareDataCheckout(form);
+
+    let ePayco = window.ePayco; // ok
+
+    let handler = ePayco.checkout.configure({
+        key: config.movistar_key,
+        test: config.checkOutPruebas, //Modo produccion,
+    });
+
     handler.open(data);
+    handler.onCloseModal = () => {
+        callB();
+    };
     document.onHistoryGo = function () {
         return false;
     }
