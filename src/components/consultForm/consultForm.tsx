@@ -45,9 +45,9 @@ const ConultForm: React.FC<Props> = (props) => {
     let submit = async (type: string) => {
         set({...state, processing: type, errorServer: ''});
         let data:requestFactura = {
-            isRefNumber:"true",
+            isRefNumber: state.typeLine === 'movil' ? "true" : "",
             invoiceType:state.typeLine,
-            comerce:"comerce",
+            comerce:"",
             paymentRef:state.number
         }
         let request = await GET_FACTURAS(data);
