@@ -45,7 +45,7 @@ const ConultForm: React.FC<Props> = (props) => {
     let submit = async (type: string) => {
         set({...state, processing: type, errorServer: ''});
         let data:requestFactura = {
-            isRefNumber: state.typeLine === 'movil' ? "true" : "",
+            isRefNumber: state.typeLine === 'movil' ? "true" : "false",
             invoiceType:state.typeLine,
             comerce:"",
             paymentRef:state.typeLine === 'movil' ? state.number : state.indicative + state.number
