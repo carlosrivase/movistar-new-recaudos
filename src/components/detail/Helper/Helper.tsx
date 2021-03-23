@@ -4,21 +4,6 @@ import {GroupInvoice, Extras, Invoice} from "../types";
 import {UpdateFeeTypes, buildFeetypeData} from "../../checkout/updateFeetypes";
 
 
-type Extra = {
-    legend: string;
-    monto: string;
-    extra: string;
-    id: number
-}
-
-type grupoFactura = {
-    id: number;
-    total: number;
-    active: boolean;
-    totalToPay: number;
-    facturas: Extra[];
-}
-
 //////////////////////////////////////////
 // ARMA EL OBJETO DE DETALLES
 //////////////////////////////////////////
@@ -42,16 +27,19 @@ export const CreateArrayInvoices = (data: Extras) => {
 
     let invoices: Invoice[] = [];
 
+
     invoices = labels.map((item, id) => ({
-        legend: item.name,
-        monto: data[item.value as keyof Extras],
-        extra: item.value,
+        legend : item.name,
+        monto  : data[item.value as keyof Extras],
+        extra  : item.value,
         id
     }))
+
 
     if (invoices.some((item: Invoice) => item.monto)) {
         return invoices;
     }
+
     return [];
 }
 
@@ -66,6 +54,7 @@ export const CreateInvoiceGroup = (data: DP[]) => {
             total: item.total,
             active: true,
             totalToPay: item.total,
+            extra3: item.extra3,
             facturas: CreateArrayInvoices({
                 extra6: item.extra6,
                 extra7: item.extra7,

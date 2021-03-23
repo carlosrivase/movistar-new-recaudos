@@ -12,7 +12,7 @@ let   getVariableParam = (parametro:string )=> {
 
 
 export let validateRoute = (changeLocation:(e:string)=> void )=> {
-    console.log("aqui")
+
     let url = window.location.pathname.split('/');
     let parametros = window.location.search.replace('?', ''); //Parametros en url
     let param = url[url.length - 1];
@@ -79,7 +79,6 @@ export let validateRoute = (changeLocation:(e:string)=> void )=> {
                         pathname === '/corporativo/' ||
                         pathname === 'corporativo/') {
                         changeLocation(`/corporativo${search}&tipo_pago=movistar`);
-                        console.log("puto")
                         sessionStorage.setItem('isCorporativo', '1');
                     }
                 }

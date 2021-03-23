@@ -48,6 +48,8 @@ const Field: React.FC<Props> = (props) => {
                         className={"d-md-none"}
                         placeholder={props.placeholder }
                         disabled={props.disabled}
+                        onFocus={()=> set(true)}
+                        onBlur={()=> set(false)}
                         onChange={(e:any)=> {
                             let obj = {
                                 target:{value:e.target.value.replace(/[^0-9]/g,'')}
@@ -56,6 +58,8 @@ const Field: React.FC<Props> = (props) => {
                         }}
                     />
                     <Cleave
+                        onFocus={()=> set(true)}
+                        onBlur={()=> set(false)}
                         ref={props.theRef}
                         disabled={props.disabled}
                         className={"to-right wc d-none d-md-block"}

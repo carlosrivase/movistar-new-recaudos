@@ -7,7 +7,7 @@ import ConultForm from "../consultForm/consultForm";
 import {withRouter} from "react-router-dom";
 
 interface Props {
-    history:any
+    history:any,
 }
 
 const Home: React.FC<Props> = (props) => {

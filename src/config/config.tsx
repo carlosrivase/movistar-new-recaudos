@@ -59,11 +59,10 @@ const MOVISTAR_RECAUDO_KEY = process.env.REACT_APP_MOVISTAR_RECAUDO_KEY;
 
 //URLS DE CONSULTA CHECKOUT PRINCIPAL
 const EPAYCO_APP_CHECKOUT = {
-    production   : "https://checkout.epayco.co/checkout.js",
-    development  : "https://checkout.epayco.co/checkout.js",
-    test         : "https://secure.epayco.io/checkout.preprod.js",
-    local        : "https://secure.epayco.io/checkout.preprod.js",
-}[ENVIRONMENT];
+    production : "https://checkout.epayco.co/checkout.js" ,
+    development : "https://epayco-checkout-testing.s3.amazonaws.com/checkout.preprod.js ",
+    test : "https://epayco-checkout-testing.s3.amazonaws.com/checkout.testing.js " ,
+    local : "https://checkout.epayco.co/checkout.js" , }[ ENVIRONMENT ];
 
 const REACT_APP_GEO_IP_URL = "https://apify-private.epayco.co/getip";
 

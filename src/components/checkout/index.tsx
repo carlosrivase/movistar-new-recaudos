@@ -2,58 +2,6 @@ import React from "react";
 import config from "../../config/config";
 
 
-export type facuraresp = {
-    descripcion:string;
-    documento:string;
-    extra1: string;
-    extra2: string;
-    extra3: string;
-    extra4: string;
-    extra5: boolean;
-    extra6: number;
-    extra7: number;
-    extra8: number;
-    extra9: string;
-    extra10: boolean;
-    extra11: boolean;
-    facturaId:string;
-    id: string;
-    identificacionEmpresa:string;
-    moneda: string;
-    total: number;
-}
-
-
-
-let fdasf = {
-    showServices: true,
-    data: [],
-    amounToPay: "",
-    payment_ref: "",
-    total_balance: "",
-    is_greta: false,
-    canal: "",
-    extra10: "",
-    is_ref_number: "",
-    number: "",
-    account_number: "",
-    num_document: "",
-    num_control: "",
-    invoice_type: "",
-    public_key: "",
-    fecha_expiracion: "",
-    control_num: "",
-    empresa: '',
-    metrotelRefNumber: false,
-    canSusbcribe: false
-}
-
-export const checkoutRender = () =>{
-    const script:any = document.createElement('script');
-    script.src = config.EPAYCO_APP_CHECKOUT;
-    document.body.appendChild(script);
-};
-
 declare global {
     interface Window {
         ePayco:any;
@@ -64,7 +12,13 @@ declare global {
     }
 }
 
-export let ePayco = window.ePayco; // ok
+export const checkoutRender = () =>{
+    const script:any = document.createElement('script');
+    script.src = config.EPAYCO_APP_CHECKOUT;
+    document.body.appendChild(script);
+};
+
+
 
 
 const getDataFetType = (key:string, value:string) => {
@@ -167,15 +121,22 @@ const PrepareDataCheckout = (data:any)=>{
     })
 }
 
-export let handler:any = ( values:any )=> ePayco.checkout.configure({
-    key: values.public_key ? values.public_key : config.movistar_key,
-    test: config.checkOutPruebas, //Modo produccion,
-    onClose: ()=> console.log("cerre men :::::::")
-});
 
-export const OpenCheckout = ( form:DataCheckout ) => {
+
+export const OpenCheckout = ( form:DataCheckout, callB:()=> void ) => {
     let data:DataCheckout = PrepareDataCheckout(form);
+
+    let ePayco = window.ePayco; // ok
+
+    let handler = ePayco.checkout.configure({
+        key: config.movistar_key,
+        test: config.checkOutPruebas, //Modo produccion,
+    });
+
     handler.open(data);
+    handler.onCloseModal = () => {
+        callB();
+    };
     document.onHistoryGo = function () {
         return false;
     }
