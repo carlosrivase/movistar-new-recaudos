@@ -46,9 +46,9 @@ const ConultForm: React.FC<Props> = (props) => {
         set({...state, processing: type, errorServer: ''});
         let data:requestFactura = {
             isRefNumber: state.typeLine === 'movil' ? "true" : "false",
-            invoiceType: state.typeLine === 'fija' ? 'fijo' : "movil",
+            invoiceType: state.typeLine === 'movil' ? "movil" : "fijo",
             comerce:"",
-            paymentRef: state.typeLine === 'fija' ? state.number : state.indicative + state.number
+            paymentRef: state.typeLine === 'movil' ? state.number : state.indicative + state.number
         }
         let request = await GET_FACTURAS(data);
         if(request.result && request.facturas.length){
